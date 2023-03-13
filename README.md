@@ -11,7 +11,7 @@ resource "digitalocean_ssh_key" "default" {
 }
 
 module "cluster" {
-  source = "../../../modules/services/cluster"
+  source = "github.com/isfonzar/terraform-digitalocean-cluster?ref=v0.1.2"
 
   ssh_key = digitalocean_ssh_key.default.id
 }

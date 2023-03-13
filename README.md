@@ -23,5 +23,12 @@ and then run
 $ terraform apply
 ```
 
+## Collaboration
+
+1. Install [pre-commit]. E.g. `brew install pre-commit`.
+2. Run `pre-commit install` in the repo.
+3. Start coding
+
 [DigitalOcean]: https://www.digitalocean.com
 [Terraform]: https://www.terraform.io
+[pre-commit]: http://pre-commit.com/

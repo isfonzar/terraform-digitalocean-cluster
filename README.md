@@ -2,6 +2,7 @@
 [Terraform] module for a cluster with a master node and some worker nodes in [DigitalOcean]
 
 ![Terraform fmt](https://github.com/isfonzar/terraform-digitalocean-cluster/actions/workflows/terraform-fmt.yml/badge.svg)
+![version](https://img.shields.io/github/v/tag/isfonzar/terraform-digitalocean-cluster)
 
 ## Usage
 

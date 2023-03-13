@@ -1,5 +1,5 @@
 # terraform-digitalocean-cluster
-Terraform configuration for a cluster with master node and worker nodes in DigitalOcean
+[Terraform] module for a cluster with a master node and some worker nodes in [DigitalOcean]
 
 ## Usage
 
@@ -22,3 +22,6 @@ and then run
 ```shell
 $ terraform apply
 ```
+
+[DigitalOcean]: https://www.digitalocean.com
+[Terraform]: https://www.terraform.io

@@ -1,6 +1,8 @@
 # terraform-digitalocean-cluster
 [Terraform] module for a cluster with a master node and some worker nodes in [DigitalOcean]
 
+![Terraform fmt](https://github.com/isfonzar/terraform-digitalocean-cluster/actions/workflows/terraform-fmt.yml/badge.svg)
+
 ## Usage
 
 Add the following to your terraform configuration

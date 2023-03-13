@@ -11,9 +11,9 @@ terraform {
 
 # Create main infrastructure project that will hold all resources
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project
-resource "digitalocean_project" "infra" {
-  name        = "Infra"
-  description = "A project that holds all the resources used in the current infrastructure"
+resource "digitalocean_project" "cluster" {
+  name        = var.cluster_name
+  description = var.cluster_description
   resources   = [digitalocean_droplet.master.urn]
 }
 

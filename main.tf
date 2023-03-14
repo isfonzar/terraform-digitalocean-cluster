@@ -20,11 +20,10 @@ resource "digitalocean_project" "cluster" {
 # Create the master node
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/droplet
 resource "digitalocean_droplet" "master" {
-  image      = "ubuntu-22-04-x64"
-  name       = "master-node"
-  size       = "s-1vcpu-512mb-10gb"
-  region     = "nyc1"
-  backups    = false
+  name       = var.master_node_name
+  image      = var.master_node_image
+  size       = var.master_node_size
+  region     = var.region
   monitoring = true
   ssh_keys   = [var.ssh_key]
 }

@@ -15,6 +15,9 @@ locals {
   alert_cpu_type             = "v1/insights/droplet/cpu"
   alert_cpu_threshold        = 90
   alert_cpu_enabled          = true
+  alert_memory_type          = "v1/insights/droplet/memory_utilization_percent"
+  alert_memory_threshold     = 90
+  alert_memory_enabled       = true
 }
 
 # Create main infrastructure project that will hold all resources
@@ -47,4 +50,17 @@ resource "digitalocean_monitor_alert" "cpu_alert" {
   enabled     = local.alert_cpu_enabled
   entities    = [digitalocean_droplet.master.id]
   description = "CPU usage is above ${local.alert_cpu_threshold}% for the last ${local.alert_time_window}"
+}
+
+resource "digitalocean_monitor_alert" "memory_alert" {
+  alerts {
+    email = [var.alert_email]
+  }
+  window      = local.alert_time_window
+  type        = local.alert_memory_type
+  compare     = local.alert_compare_greater_than
+  value       = local.alert_memory_threshold
+  enabled     = local.alert_memory_enabled
+  entities    = [digitalocean_droplet.master.id]
+  description = "Memory utilization is above ${local.alert_cpu_threshold}% for the last ${local.alert_time_window}"
 }

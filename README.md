@@ -9,12 +9,20 @@
 Add the following to your terraform configuration
 
 ```terraform
+# Have all the SSH keys loaded from a directory
+locals {
+  ssh_keys = fileset("${path.module}/ssh_keys", "*.pub")
+}
+
+# Create resources for all your SSH keys
+# You can import existing SSH keys by running: terraform import 'digitalocean_ssh_key.ssh_keys["filename.pub"]' {KEY_ID}
 resource "digitalocean_ssh_key" "ssh_keys" {
   name       = each.key
   public_key = file("${path.module}/ssh_keys/${each.value}")
   for_each   = local.ssh_keys
 }
 
+# Create DigitalOcean Cluster module
 module "cluster" {
   source = "github.com/isfonzar/terraform-digitalocean-cluster?ref=v0.1.2"
 

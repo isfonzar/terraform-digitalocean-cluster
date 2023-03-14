@@ -63,7 +63,7 @@ resource "digitalocean_monitor_alert" "cpu_alert" {
   compare     = local.alert_compare_greater_than
   value       = local.alert_cpu_threshold
   enabled     = local.alert_cpu_enabled
-  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].urn]
+  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].id]
   description = "CPU usage is above ${local.alert_cpu_threshold}% for the last ${local.alert_time_window}"
 }
 
@@ -76,7 +76,7 @@ resource "digitalocean_monitor_alert" "memory_alert" {
   compare     = local.alert_compare_greater_than
   value       = local.alert_memory_threshold
   enabled     = local.alert_memory_enabled
-  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].urn]
+  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].id]
   description = "Memory utilization is above ${local.alert_memory_threshold}% for the last ${local.alert_time_window}"
 }
 
@@ -89,6 +89,6 @@ resource "digitalocean_monitor_alert" "disk_alert" {
   compare     = local.alert_compare_greater_than
   value       = local.alert_disk_threshold
   enabled     = local.alert_disk_enabled
-  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].urn]
+  entities    = [digitalocean_droplet.master.id, digitalocean_droplet.worker[*].id]
   description = "Disk utilization is above ${local.alert_disk_threshold}% for the last ${local.alert_time_window}"
 }

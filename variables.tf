@@ -4,18 +4,6 @@ variable "ssh_keys" {
   sensitive   = true
 }
 
-# Project related variables
-variable "cluster_name" {
-  type        = string
-  description = "Name of the project in DigitalOcean"
-  default     = "Cluster"
-}
-variable "cluster_description" {
-  type        = string
-  description = "Description of the project in DigitalOcean"
-  default     = "Cluster of nodes"
-}
-
 # Master node related variables
 variable "master_node_name" {
   type        = string

@@ -25,14 +25,6 @@ locals {
   terraform_tag = "terraform"
 }
 
-# Create main infrastructure project that will hold all resources
-# https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project
-resource "digitalocean_project" "cluster" {
-  name        = var.cluster_name
-  description = var.cluster_description
-  resources   = setunion([digitalocean_droplet.master.urn], digitalocean_droplet.worker[*].urn)
-}
-
 # Create the master node
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/droplet
 resource "digitalocean_droplet" "master" {

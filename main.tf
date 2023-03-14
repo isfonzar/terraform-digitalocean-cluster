@@ -21,6 +21,8 @@ locals {
   alert_disk_type            = "v1/insights/droplet/disk_utilization_percent"
   alert_disk_threshold       = 80
   alert_disk_enabled         = true
+
+  terraform_tag = "terraform"
 }
 
 # Create main infrastructure project that will hold all resources
@@ -40,6 +42,7 @@ resource "digitalocean_droplet" "master" {
   region     = var.region
   monitoring = true
   ssh_keys   = var.ssh_keys
+  tags       = [local.terraform_tag]
 }
 
 # Create the worker nodes
@@ -52,6 +55,7 @@ resource "digitalocean_droplet" "worker" {
   monitoring = true
   ssh_keys   = var.ssh_keys
   count      = var.worker_node_count
+  tags       = [local.terraform_tag]
 }
 
 resource "digitalocean_monitor_alert" "cpu_alert" {

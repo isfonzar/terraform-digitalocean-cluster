@@ -1,6 +1,7 @@
-variable "ssh_key" {
-  type      = string
-  sensitive = true
+variable "ssh_keys" {
+  type        = list(string)
+  description = "Contains a list of all the ssh_keys that can access the cluster"
+  sensitive   = true
 }
 
 # Project related variables

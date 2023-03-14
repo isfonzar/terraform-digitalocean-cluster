@@ -39,7 +39,7 @@ resource "digitalocean_droplet" "master" {
   size       = var.master_node_size
   region     = var.region
   monitoring = true
-  ssh_keys   = [var.ssh_key]
+  ssh_keys   = var.ssh_keys
 }
 
 # Create the worker nodes
@@ -50,7 +50,7 @@ resource "digitalocean_droplet" "worker" {
   size       = var.worker_node_size
   region     = var.region
   monitoring = true
-  ssh_keys   = [var.ssh_key]
+  ssh_keys   = var.ssh_keys
   count      = var.worker_node_count
 }
 

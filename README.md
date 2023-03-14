@@ -9,14 +9,19 @@
 Add the following to your terraform configuration
 
 ```terraform
-resource "digitalocean_ssh_key" "default" {
-  # (...)
+resource "digitalocean_ssh_key" "ssh_keys" {
+  name       = each.key
+  public_key = file("${path.module}/ssh_keys/${each.value}")
+  for_each   = local.ssh_keys
 }
 
 module "cluster" {
   source = "github.com/isfonzar/terraform-digitalocean-cluster?ref=v0.1.2"
 
-  ssh_key = digitalocean_ssh_key.default.id
+  ssh_keys    = values(digitalocean_ssh_key.ssh_keys)[*].id
+  alert_email = "yourbestemail@example.com"
+  
+  worker_node_count = 3 # amount of worker nodes (default: 2)
 }
 ```
 

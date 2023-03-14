@@ -51,7 +51,7 @@ resource "digitalocean_droplet" "worker" {
   region     = var.region
   monitoring = true
   ssh_keys   = [var.ssh_key]
-  count      = 2
+  count      = var.worker_node_count
 }
 
 resource "digitalocean_monitor_alert" "cpu_alert" {

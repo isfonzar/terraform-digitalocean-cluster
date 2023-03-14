@@ -48,6 +48,11 @@ variable "worker_node_size" {
   description = "Size of the worker nodes"
   default     = "s-1vcpu-512mb-10gb"
 }
+variable "worker_node_count" {
+  type        = number
+  description = "Amount of worker nodes"
+  default     = 2
+}
 
 # Common variables for all nodes
 variable "region" {

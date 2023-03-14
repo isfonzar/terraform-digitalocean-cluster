@@ -9,6 +9,14 @@ terraform {
   required_version = ">= 1.4.0"
 }
 
+locals {
+  alert_time_window          = "5m"
+  alert_compare_greater_than = "GreaterThan"
+  alert_cpu_type             = "v1/insights/droplet/cpu"
+  alert_cpu_threshold        = 90
+  alert_cpu_enabled          = true
+}
+
 # Create main infrastructure project that will hold all resources
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project
 resource "digitalocean_project" "cluster" {
@@ -28,4 +36,15 @@ resource "digitalocean_droplet" "master" {
   ssh_keys   = [var.ssh_key]
 }
 
-# TODO: create alerts for the nodes
+resource "digitalocean_monitor_alert" "cpu_alert" {
+  alerts {
+    email = [var.alert_email]
+  }
+  window      = local.alert_time_window
+  type        = local.alert_cpu_type
+  compare     = local.alert_compare_greater_than
+  value       = local.alert_cpu_threshold
+  enabled     = local.alert_cpu_enabled
+  entities    = [digitalocean_droplet.master.id]
+  description = "CPU usage is above ${local.alert_cpu_threshold}% for the last ${local.alert_time_window}"
+}

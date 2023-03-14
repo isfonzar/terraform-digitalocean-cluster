@@ -38,3 +38,7 @@ variable "region" {
   description = "Region in which the nodes will be created in"
   default     = "nyc1"
 }
+variable "alert_email" {
+  type        = string
+  description = "Email address to send alerts to"
+}

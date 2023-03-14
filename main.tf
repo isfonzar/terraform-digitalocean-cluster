@@ -42,6 +42,18 @@ resource "digitalocean_droplet" "master" {
   ssh_keys   = [var.ssh_key]
 }
 
+# Create the worker nodes
+# https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/droplet
+resource "digitalocean_droplet" "worker" {
+  name       = "${var.worker_node_name}-${count.index}"
+  image      = var.worker_node_image
+  size       = var.worker_node_size
+  region     = var.region
+  monitoring = true
+  ssh_keys   = [var.ssh_key]
+  count      = 2
+}
+
 resource "digitalocean_monitor_alert" "cpu_alert" {
   alerts {
     email = [var.alert_email]

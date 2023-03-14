@@ -32,6 +32,23 @@ variable "master_node_size" {
   default     = "s-1vcpu-512mb-10gb"
 }
 
+# Worker nodes related variables
+variable "worker_node_name" {
+  type        = string
+  description = "Base name of the worker node in the format: $name-$i"
+  default     = "worker"
+}
+variable "worker_node_image" {
+  type        = string
+  description = "Image of the worker nodes"
+  default     = "ubuntu-22-04-x64"
+}
+variable "worker_node_size" {
+  type        = string
+  description = "Size of the worker nodes"
+  default     = "s-1vcpu-512mb-10gb"
+}
+
 # Common variables for all nodes
 variable "region" {
   type        = string

@@ -45,7 +45,7 @@ resource "digitalocean_droplet" "master" {
 # Create the worker nodes
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/droplet
 resource "digitalocean_droplet" "worker" {
-  name       = "${var.worker_node_name}-${count.index}"
+  name       = "${var.worker_node_name}${count.index}"
   image      = var.worker_node_image
   size       = var.worker_node_size
   region     = var.region

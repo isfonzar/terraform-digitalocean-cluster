@@ -16,7 +16,7 @@ locals {
   alert_cpu_threshold        = 90
   alert_cpu_enabled          = true
   alert_memory_type          = "v1/insights/droplet/memory_utilization_percent"
-  alert_memory_threshold     = 90
+  alert_memory_threshold     = 85
   alert_memory_enabled       = true
 }
 
@@ -62,5 +62,5 @@ resource "digitalocean_monitor_alert" "memory_alert" {
   value       = local.alert_memory_threshold
   enabled     = local.alert_memory_enabled
   entities    = [digitalocean_droplet.master.id]
-  description = "Memory utilization is above ${local.alert_cpu_threshold}% for the last ${local.alert_time_window}"
+  description = "Memory utilization is above ${local.alert_memory_threshold}% for the last ${local.alert_time_window}"
 }
